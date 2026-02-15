@@ -1,8 +1,6 @@
 <?php
 session_start();
 include "config/koneksi.php";
-
-
 if (!isset($_SESSION['role'])) {
   header("Location: auth/login.php");
   exit;
@@ -83,7 +81,6 @@ ORDER BY tb_pengumpulan_tugas.tanggal_kumpul DESC
     </table>
 
   </div>
-  <script src="assets/script.js"></script>
 
 </body>
 

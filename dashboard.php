@@ -40,10 +40,8 @@ if (!isset($_SESSION['role'])) {
     </div>
 
     <br>
-    <a href="logout.php" class="btn-logout" onclick="showLoading()">Logout</a>
-
+    <a href="auth/logout.php">Logout</a>
   </div>
-  <script src="assets/script.js"></script>
 
 </body>
 
