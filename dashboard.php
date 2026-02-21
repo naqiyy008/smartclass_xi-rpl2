@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['role'])) {
   header("Location: auth/login.php");
   exit;
@@ -7,42 +8,63 @@ if (!isset($_SESSION['role'])) {
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Dashboard | SmartClass</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 
-  <div id="loading-screen">
-    <div class="neon-loader">
-      <span></span>
-    </div>
+<header>
+  <span>SmartClass XI RPL 2</span>
+  <a href="auth/logout.php" class="btn-back">Logout</a>
+</header>
+
+<div class="container">
+
+  <div class="info-box">
+    Halo, <b><?= $_SESSION['nama']; ?></b>
+    (<?= ucfirst($_SESSION['role']); ?>)
   </div>
-  <header>SmartClass XI RPL 2</header>
 
-  <div class="container">
-    <p>Halo, <b><?= $_SESSION['nama']; ?></b> (<?= $_SESSION['role']; ?>)</p>
+  <div class="cards">
 
-    <div class="cards">
-      <a href="tugas_offline.php" class="card blue">📝<br>Tugas Offline</a>
-      <a href="tugas_online.php" class="card purple">🌐<br>Tugas Online</a>
-      <a href="absensi.php" class="card green">📅<br>Absensi</a>
+    <a href="tugas_offline.php" class="card blue">
+      <div class="icon">📝</div>
+      <h3>Tugas Offline</h3>
+      <p>Lihat & tambah tugas offline</p>
+    </a>
 
-      <?php if ($_SESSION['role'] == "guru") { ?>
-        <a href="pengumpulan.php" class="card orange">📤<br>Pengumpulan</a>
-      <?php } ?>
+    <a href="tugas_online.php" class="card purple">
+      <div class="icon">🌐</div>
+      <h3>Tugas Online</h3>
+      <p>Lihat & tambah tugas online</p>
+    </a>
 
-      <?php if ($_SESSION['role'] == "admin") { ?>
-        <a href="crud/tugas/read.php" class="card orange">⚙ Kelola Tugas</a>
-      <?php } ?>
-    </div>
+    <a href="absensi.php" class="card green">
+      <div class="icon">📅</div>
+      <h3>Absensi</h3>
+      <p>Kelola absensi siswa</p>
+    </a>
 
-    <br>
-    <a href="auth/logout.php">Logout</a>
+    <?php if ($_SESSION['role'] == "guru") { ?>
+      <a href="pengumpulan.php" class="card blue">
+        <div class="icon">📤</div>
+        <h3>Pengumpulan</h3>
+        <p>Lihat tugas yang dikumpulkan</p>
+      </a>
+    <?php } ?>
+
+    <?php if ($_SESSION['role'] == "admin") { ?>
+      <a href="crud/tugas/read.php" class="card purple">
+        <div class="icon">⚙</div>
+        <h3>Kelola Tugas</h3>
+        <p>Edit & hapus data tugas</p>
+      </a>
+    <?php } ?>
+
   </div>
+
+</div>
 
 </body>
-
 </html>

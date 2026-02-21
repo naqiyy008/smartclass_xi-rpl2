@@ -1,7 +1,9 @@
 <?php
 session_start();
 include "../../config/koneksi.php";
-if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
+if ($_SESSION['role'] != "admin") {
+  exit("Akses ditolak");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +13,11 @@ if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
 </head>
 <body>
 
-<header>Kelola Data Tugas</header>
+<header>
+  <span>Kelola Data Tugas</span>
+  <a href="../../dashboard.php" class="btn-back">⬅ Kembali</a>
+</header>
+
 <div class="container">
 
 <a href="create.php" class="btn btn-upload">+ Tambah Tugas</a>
@@ -24,32 +30,44 @@ if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
   <th>Guru</th>
   <th>Deadline</th>
   <th>Jenis</th>
+  <th>Link</th>
   <th>Aksi</th>
 </tr>
 
 <?php
 $no=1;
-$q = mysqli_query($conn,"SELECT * FROM tbtugas");
+$q = mysqli_query($conn,"
+SELECT tbtugas.*, tbguru.nama_guru
+FROM tbtugas
+LEFT JOIN tbguru ON tbtugas.id_guru = tbguru.id_guru
+");
+
 while($t=mysqli_fetch_assoc($q)){
 ?>
 <tr>
-  <td><?= $no++; ?></td>
-  <td><?= $t['judul']; ?></td>
-  <td><?= $t['mapel']; ?></td>
-  <td><?= $t['guru']; ?></td>
-  <td><?= $t['deadline']; ?></td>
-  <td><?= $t['jenis']; ?></td>
-  <td>
-    <a href="edit.php?id=<?= $t['id_tugas']; ?>" class="btn btn-izin">Edit</a>
-    <a href="delete.php?id=<?= $t['id_tugas']; ?>" class="btn btn-alpha" onclick="return confirm('Hapus data?')">Hapus</a>
-  </td>
+<td><?= $no++; ?></td>
+<td><?= $t['judul']; ?></td>
+<td><?= $t['mapel']; ?></td>
+<td><?= $t['nama_guru']; ?></td>
+<td><?= $t['deadline']; ?></td>
+<td><?= ucfirst($t['jenis']); ?></td>
+<td>
+<?php 
+if($t['jenis']=="online" && !empty($t['link_pengumpulan'])){
+    echo "<a href='".$t['link_pengumpulan']."' target='_blank'>Buka</a>";
+}else{
+    echo "-";
+}
+?>
+</td>
+<td>
+<a href="edit.php?id=<?= $t['id_tugas']; ?>" class="btn btn-izin">Edit</a>
+<a href="delete.php?id=<?= $t['id_tugas']; ?>" class="btn btn-alpha" onclick="return confirm('Hapus data?')">Hapus</a>
+</td>
 </tr>
 <?php } ?>
-
 </table>
-<br>
-<a href="../../dashboard.php">⬅ Kembali</a>
-</div>
 
+</div>
 </body>
 </html>
