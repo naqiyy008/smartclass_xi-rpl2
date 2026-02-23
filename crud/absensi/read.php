@@ -27,9 +27,9 @@ if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
 
 <?php
 $no=1;
-$q = mysqli_query($conn,"SELECT absensi.*, siswa.nama_siswa 
+$q = mysqli_query($conn,"SELECT tbabsensi.*, siswa.nama_siswa 
 FROM absensi 
-JOIN siswa ON absensi.id_siswa=siswa.id_siswa");
+JOIN tbsiswa ON tbabsensi.id_siswa=siswa.id_siswa");
 
 while($a=mysqli_fetch_assoc($q)){
 ?>

@@ -32,7 +32,7 @@ if($_SESSION['role']!="guru" && $_SESSION['role']!="admin"){
 $no=1;
 $q = mysqli_query($conn,"SELECT pengumpulan_tugas.*, siswa.nama_siswa, tugas.judul 
 FROM pengumpulan_tugas
-JOIN siswa ON pengumpulan_tugas.id_siswa=siswa.id_siswa
+JOIN tbsiswa ON pengumpulan_tugas.id_siswa=siswa.id_siswa
 JOIN tugas ON pengumpulan_tugas.id_tugas=tugas.id_tugas
 ORDER BY tanggal_kumpul DESC");
 

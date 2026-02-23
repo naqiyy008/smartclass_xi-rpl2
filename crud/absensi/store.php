@@ -2,7 +2,7 @@
 session_start();
 include "../../config/koneksi.php";
 
-mysqli_query($conn,"INSERT INTO absensi(id_siswa,tanggal,status)
+mysqli_query($conn,"INSERT INTO tbabsensi(id_siswa,tanggal,status)
 VALUES(
 '$_POST[id_siswa]',
 '$_POST[tanggal]',

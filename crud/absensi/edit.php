@@ -4,7 +4,7 @@ include "../../config/koneksi.php";
 if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
 
 $id = $_GET['id'];
-$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM absensi WHERE id_absensi='$id'"));
+$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tbabsensi WHERE id_absensi='$id'"));
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@ $data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM absensi WHERE id_ab
   <label>Nama Siswa</label>
   <select name="id_siswa">
     <?php
-    $s = mysqli_query($conn,"SELECT * FROM siswa");
+    $s = mysqli_query($conn,"SELECT * FROM tbsiswa");
     while($d=mysqli_fetch_assoc($s)){
       $selected = ($d['id_siswa']==$data['id_siswa']) ? "selected" : "";
       echo "<option value='$d[id_siswa]' $selected>$d[nama_siswa]</option>";

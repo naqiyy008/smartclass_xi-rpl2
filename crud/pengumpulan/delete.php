@@ -8,16 +8,16 @@ if($_SESSION['role']!="guru" && $_SESSION['role']!="admin"){
 
 $id = $_GET['id'];
 
-/* ambil nama file dulu */
+/* mengambil nama file */
 $data = mysqli_fetch_assoc(mysqli_query($conn,
 "SELECT file_tugas FROM pengumpulan_tugas WHERE id_pengumpulan='$id'"));
 
 $file = $data['file_tugas'];
 
-/* hapus dari database */
+/* menghapus dari database */
 mysqli_query($conn,"DELETE FROM pengumpulan_tugas WHERE id_pengumpulan='$id'");
 
-/* hapus file fisik */
+/* menghapus fisik file */
 if(file_exists("../../uploads/".$file)){
   unlink("../../uploads/".$file);
 }

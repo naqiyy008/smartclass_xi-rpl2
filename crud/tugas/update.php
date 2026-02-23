@@ -2,7 +2,7 @@
 session_start();
 include "../../config/koneksi.php";
 
-mysqli_query($conn,"UPDATE tugas SET
+mysqli_query($conn,"UPDATE tbtugas SET
 judul='$_POST[judul]',
 mapel='$_POST[mapel]',
 guru='$_POST[guru]',

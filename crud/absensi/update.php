@@ -2,7 +2,7 @@
 session_start();
 include "../../config/koneksi.php";
 
-mysqli_query($conn,"UPDATE absensi SET
+mysqli_query($conn,"UPDATE tbabsensi SET
 id_siswa='$_POST[id_siswa]',
 tanggal='$_POST[tanggal]',
 status='$_POST[status]'

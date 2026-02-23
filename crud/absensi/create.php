@@ -18,7 +18,7 @@ if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
   <label>Nama Siswa</label>
   <select name="id_siswa" required>
     <?php
-    $s = mysqli_query($conn,"SELECT * FROM siswa");
+    $s = mysqli_query($conn,"SELECT * FROM tbsiswa");
     while($d=mysqli_fetch_assoc($s)){
       echo "<option value='$d[id_siswa]'>$d[nama_siswa]</option>";
     }

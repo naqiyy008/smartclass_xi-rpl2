@@ -4,7 +4,7 @@ include "../../config/koneksi.php";
 if($_SESSION['role']!="admin"){ exit("Akses ditolak"); }
 
 $id = $_GET['id'];
-$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM siswa WHERE id_siswa='$id'"));
+$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tbsiswa WHERE id_siswa='$id'"));
 ?>
 <!DOCTYPE html>
 <html>
